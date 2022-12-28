@@ -1,0 +1,145 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px #555;
+    height: 460px;
+    width: 300px;
+    overflow: hidden;
+    text-align: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border-radius: 20px;
+    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
+    background-color: #F2F2F2;
+    margin: 5px
+}
+
+/* Parte de cima */
+.cabecalho {
+    width: 100%;
+    height: 110px;
+    background-color: #222A35;
+    color: #fff;
+}
+
+.imagem {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 25px;
+    width: 100%;
+    height: 25px;
+    padding-top: 8px;
+}
+
+.nome_PM {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5px;
+    font-size: 30px;
+}
+
+.PM {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    font-size: 15px;
+}
+
+/* Parte da Ordem */
+
+.ordem_base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 50px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4472C4;
+
+}
+
+.enfase {
+    font-weight: bold;
+}
+
+.texto {
+    text-align: left;
+    width: 100%;
+    /* height: 20px; */
+    overflow: hidden;
+    font-size: 15px;
+}
+
+
+/* Parte do equipamento */
+.equipamento_base {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 5px;
+    width: 90%;
+    height: 50px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #4472C4;
+}
+
+.texto1 {
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    font-size: 15px;
+}
+
+.texto2 {
+    text-align: center;
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+/* Parte da operação*/
+
+.operacao_base{
+    display: grid;
+    height: auto;
+    width: 90%;
+    grid-template-columns: 10% 70% 20%;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+.operacao_base_grid{
+    display: grid;
+    height: 150px;
+    width: 90%;
+    grid-template-columns: 10% 70% 20%;
+    overflow: hidden;
+    font-size: 12px;
+    border-bottom: 2px solid #4472C4;
+}
+
+/* Parte da data */
+.data_base {
+    display: flex;
+    padding-top: 20px;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.data_base svg {
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: .5s;
+}
+.texto4{
+    text-align: right;
+}
