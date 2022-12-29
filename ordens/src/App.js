@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import Ordem from './Ordem';
 import Navbar from './Navbar';
+import Loading from './Loading';
 
 
 function App() {
@@ -21,41 +22,54 @@ function App() {
   const db = getFirestore(firebaseApp)
   const userCollectionRef = collection(db, 'Ordens')
   const [dados, setDados] = useState([])
+  const [loading, setLoading] = useState(true)
+
   useEffect(() => {
-    const getData = async () => {
-      const data = await getDocs(userCollectionRef)
-      setDados(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
-    }
-    getData()
+    setTimeout(() => {
+      const getData = async () => {
+        const data = await getDocs(userCollectionRef)
+        setDados(data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+          Concluido: false
+        })))
+      }
+      setLoading(false)
+      getData()
+    }, 150)
   }, [])
 
 
-   const changeVisible = (valor) => {
-     setDados(dados.filter(dado => dado.Ordem !== valor.Ord))
-   }
+  const changeVisible = (valor) => {
+    setLoading(true)
+    fetch(setDados(dados.filter(dado => dado.Ordem !== valor.Ord)))
+      .then(setLoading(false))
+      .catch(err => console.log(err))
+  }
+
+  const changeDone = (ordem) => {
+    setLoading(true)
+    console.log(ordem.dado.id)
+    ordem.dado.Concluido = !ordem.dado.Concluido
+    console.log(ordem.dado.Concluido)
+    setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
+    setLoading(false)
+  }
 
   return (
     <div className={styles.App}>
       <Navbar></Navbar>
-      {dados.map((dado, index) => {
+      {!loading ? ((dados.map((dado, index) => {
         return (
-          <Ordem key={index}
-            Ord={dado.Ordem}
-            Operacao={dado.Operacao}
-            Descricao={dado.Descricao}
-            Equipamento_SAP={dado.Equipamento_SAP}
-            Nome_Equipamento={dado.Nome_Equipamento}
-            Nome_Local_Instalacao={dado.Nome_Local_Instalacao}
-            Horas_Previstas={dado.Horas_Previstas}
-            Data={dado.Data}
-            PM_Responsavel={dado.PM_Responsavel}
-            Classificacao={dado.Classificacao}
-            Nome_PM={dado.Nome_PM}
-            Visivel={changeVisible}
+          <Ordem key={dado.id}
+            changeVisible={changeDone}
+            changeDone={changeDone}
+            dado={dado}
           >
           </Ordem>
         )
-      })}
+      })))
+        : <Loading />}
     </div >
   );
 }

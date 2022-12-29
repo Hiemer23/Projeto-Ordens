@@ -1,13 +1,13 @@
 import styles from './Ordem.module.css'
 import { BsFillLightningChargeFill, BsSnow, BsClipboardCheck, BsCheck2Circle } from 'react-icons/bs'
-import { GiSpanner, GiWheelbarrow } from 'react-icons/gi'
+import { GiSpanner, GiWheelbarrow, GiPlainCircle } from 'react-icons/gi'
 import { useState } from 'react'
 
 
-function Ordem({ Nome_PM,Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nome_Equipamento, Nome_Local_Instalacao, Horas_Previstas, Data, PM_Responsavel, Classificacao }) {
+function Ordem({ dado, changeDone, changeVisible }) {
     let simbolo = ""
-    let teste = Ord
-    switch (Classificacao.toUpperCase()) {
+    let teste = dado.Ord
+    switch (dado.Classificacao.toUpperCase()) {
         case "ME": simbolo = "ME"
             break;
         case "EL": case "TE": simbolo = "EL"
@@ -31,23 +31,24 @@ function Ordem({ Nome_PM,Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nom
                         {simbolo === 'OP' ? <BsSnow /> : false}
                         {simbolo === 'PL' ? <BsClipboardCheck /> : false}
                     </div>
-                    <div className={styles.nome_PM}>{Nome_PM}</div>
-                    <div className={styles.PM}>{PM_Responsavel}</div>
+                    <div className={styles.nome_PM}>{dado.Nome_PM}</div>
+                    <div className={styles.PM}>{dado.PM_Responsavel}</div>
+                    <GiPlainCircle className={!dado.Concluido ? styles.circulo : styles.concluido2} />
                 </div>
                 <div className={styles.ordem_base}>
                     <div className={styles.texto}>
-                        <label className={styles.enfase}>Ordem:</label> {Ord}
+                        <label className={styles.enfase}>Ordem:</label> {dado.Ord}
                     </div>
                     <div className={styles.texto}>
-                        <label className={styles.enfase}>Desc:</label> {Descricao[0]}
+                        <label className={styles.enfase}>Desc:</label> {dado.Descricao[0]}
                     </div>
                 </div>
                 <div className={styles.equipamento_base}>
                     <div className={styles.texto1}>
-                        <label className={styles.enfase}>Equipamento:</label> {Equipamento_SAP}
+                        <label className={styles.enfase}>Equipamento:</label> {dado.Equipamento_SAP}
                     </div>
                     <div className={styles.texto2}>
-                        {Nome_Equipamento}
+                        {dado.Nome_Equipamento}
                     </div>
                 </div>
                 <div className={styles.operacao_base}>
@@ -57,20 +58,25 @@ function Ordem({ Nome_PM,Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nom
                 </div>
                 <div className={styles.operacao_base_grid}>
                     {
-                        Operacao.map((opera, index) => (
+                        dado.Operacao.map((opera, index) => (
                             <>
-                                <div key={index}>{Operacao[index]}</div>
-                                <div key={index + 1}>{Descricao[index]}</div>
-                                <div key={index + 1}>{Horas_Previstas[index]}h</div>
+                                <div key={dado.id + index + 1}>{dado.Operacao[index]}</div>
+                                <div key={dado.id + index + 2}>{dado.Descricao[index]}</div>
+                                <div key={dado.id + index + 3}>{dado.Horas_Previstas[index]}h</div>
                             </>
                         )
                         )
                     }
                 </div>
+                <div className={styles.veja_mais}>
+                    <div className={styles.texto_veja_mais}>
+                        {(dado.Operacao.length) > 3 ? "Veja Mais" : false}
+                    </div>
+                </div>
 
                 <div className={styles.data_base}>
-                    <div className={styles.texto}>Data: {Data}</div>
-                    <button className={styles.texto4} onClick={() => Visivel({ Ord })}>
+                    <div className={styles.texto}>Data: {dado.Data}</div>
+                    <button className={!dado.Concluido ? (styles.texto4) : styles.concluido} onClick={() => changeDone({ dado })}>
                         <BsCheck2Circle />
                     </button>
                 </div>
