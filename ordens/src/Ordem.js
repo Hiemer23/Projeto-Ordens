@@ -4,7 +4,7 @@ import { GiSpanner, GiWheelbarrow } from 'react-icons/gi'
 import { useState } from 'react'
 
 
-function Ordem({ Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nome_Equipamento, Nome_Local_Instalacao, Horas_Previstas, Data, PM_Responsavel, Classificacao }) {
+function Ordem({ Nome_PM,Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nome_Equipamento, Nome_Local_Instalacao, Horas_Previstas, Data, PM_Responsavel, Classificacao }) {
     let simbolo = ""
     let teste = Ord
     switch (Classificacao.toUpperCase()) {
@@ -31,7 +31,7 @@ function Ordem({ Visivel, Ord, Operacao, Descricao, Equipamento_SAP, Nome_Equipa
                         {simbolo === 'OP' ? <BsSnow /> : false}
                         {simbolo === 'PL' ? <BsClipboardCheck /> : false}
                     </div>
-                    <div className={styles.nome_PM}>Anderson C.</div>
+                    <div className={styles.nome_PM}>{Nome_PM}</div>
                     <div className={styles.PM}>{PM_Responsavel}</div>
                 </div>
                 <div className={styles.ordem_base}>

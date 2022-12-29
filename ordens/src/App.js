@@ -30,9 +30,9 @@ function App() {
   }, [])
 
 
-  const changeVisible = (valor) => {
-    setDados(dados.filter(dado => dado.Ordem !== valor.Ord))
-  }
+   const changeVisible = (valor) => {
+     setDados(dados.filter(dado => dado.Ordem !== valor.Ord))
+   }
 
   return (
     <div className={styles.App}>
@@ -50,6 +50,7 @@ function App() {
             Data={dado.Data}
             PM_Responsavel={dado.PM_Responsavel}
             Classificacao={dado.Classificacao}
+            Nome_PM={dado.Nome_PM}
             Visivel={changeVisible}
           >
           </Ordem>
