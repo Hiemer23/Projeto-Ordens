@@ -29,6 +29,11 @@ function App() {
     getData()
   }, [])
 
+
+  const changeVisible = (valor) => {
+    setDados(dados.filter(dado => dado.Ordem !== valor.Ord))
+  }
+
   return (
     <div className={styles.App}>
       <Navbar></Navbar>
@@ -45,6 +50,7 @@ function App() {
             Data={dado.Data}
             PM_Responsavel={dado.PM_Responsavel}
             Classificacao={dado.Classificacao}
+            Visivel={changeVisible}
           >
           </Ordem>
         )
