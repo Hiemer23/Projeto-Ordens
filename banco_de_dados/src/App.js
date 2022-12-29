@@ -48,7 +48,8 @@ function App() {
         Horas_Previstas: objeto[i].Horas_Previstas,
         Data: objeto[i].Data,
         PM_Responsavel: objeto[i].PM_Responsavel,
-        Classificacao: objeto[i].Classificacao
+        Classificacao: objeto[i].Classificacao,
+        Nome_PM: objeto[i].Nome_PM
       })
     }
     console.log(objeto[0])
@@ -77,7 +78,8 @@ function App() {
         Horas_Previstas: volatil[6],
         Data: volatil[7],
         PM_Responsavel: volatil[8],
-        Classificacao: volatil[9]
+        Classificacao: volatil[9],
+        Nome_PM: volatil[10]
       }
     })
     //console.log(objeto.length)
