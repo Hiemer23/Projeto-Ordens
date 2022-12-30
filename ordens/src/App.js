@@ -54,6 +54,7 @@ function App() {
     setLoading(true)
     ordem.dado.Concluido = !ordem.dado.Concluido
     setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
+    
     setLoading(false)
     console.log(PMs)
   }

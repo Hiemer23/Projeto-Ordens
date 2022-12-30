@@ -35,7 +35,7 @@ function Ordem({ dado, changeDone }) {
                 </div>
                 <div className={styles.ordem_base}>
                     <div className={styles.texto}>
-                        <label className={styles.enfase}>Ordem:</label> {dado.Ord}
+                        <label className={styles.enfase}>Ordem:</label> {dado.Ordem}
                     </div>
                     <div className={styles.texto}>
                         <label className={styles.enfase}>Desc:</label> {dado.Descricao[0]}
@@ -43,7 +43,7 @@ function Ordem({ dado, changeDone }) {
                 </div>
                 <div className={styles.equipamento_base}>
                     <div className={styles.texto1}>
-                        <label className={styles.enfase}>Equipamento:</label> {dado.Equipamento_SAP}
+                        <label className={styles.enfase}>{dado.Equipamento_SAP ? "Equipamento:" : "Local:"}</label>{dado.Equipamento_SAP ? dado.Equipamento_SAP : dado.Nome_Local_Instalacao}
                     </div>
                     <div className={styles.texto2}>
                         {dado.Nome_Equipamento}
