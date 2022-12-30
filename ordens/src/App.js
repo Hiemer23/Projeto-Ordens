@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 import { initializeApp } from "firebase/app"
 import { useEffect, useState } from 'react';
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { getFirestore, collection, getDocs, updateDoc ,doc} from "firebase/firestore";
 import Ordem from './Ordem';
 import Navbar from './Navbar';
 import Loading from './Loading';
@@ -33,8 +33,7 @@ function App() {
         const data = await getDocs(userCollectionRef)
         dadosBackup = data.docs.map((doc) => ({
           ...doc.data(),
-          id: doc.id,
-          Concluido: false,
+          id: doc.id
         }))
         PMs = dadosBackup.map(a => a.Nome_PM).filter((este, i) => dadosBackup.map(a => a.Nome_PM).indexOf(este) === i)
         ATs = dadosBackup.map(a => a.Classificacao).filter((este, i) => dadosBackup.map(a => a.Classificacao).indexOf(este) === i)
@@ -46,6 +45,13 @@ function App() {
     }, 150)
   }, [])
 
+  const update_banco = async(id,done) => {
+    const DocAtualizado = doc(db, 'Ordens',id)
+    const atualizacao = {Concluido: done}
+    console.log(id, done)
+    await updateDoc(DocAtualizado,atualizacao)
+  }
+
   const changeDone = (ordem) => {
 
     //let vet = dados.map(a=>a_Nome_PM)
@@ -54,9 +60,10 @@ function App() {
     setLoading(true)
     ordem.dado.Concluido = !ordem.dado.Concluido
     setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
-    
+
+    update_banco(ordem.dado.id,ordem.dado.Concluido)
     setLoading(false)
-    console.log(PMs)
+    //console.log(PMs)
   }
 
   const filtraPM = (PM) => {

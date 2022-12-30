@@ -49,7 +49,8 @@ function App() {
         Data: objeto[i].Data,
         PM_Responsavel: objeto[i].PM_Responsavel,
         Classificacao: objeto[i].Classificacao,
-        Nome_PM: objeto[i].Nome_PM
+        Nome_PM: objeto[i].Nome_PM,
+        Concluido: false
       })
     }
     console.log(objeto[0])
