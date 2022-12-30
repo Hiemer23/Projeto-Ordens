@@ -5,7 +5,6 @@ import { GiSpanner, GiWheelbarrow, GiPlainCircle } from 'react-icons/gi'
 
 function Ordem({ dado, changeDone }) {
     let simbolo = ""
-    let teste = dado.Ord
     switch (dado.Classificacao.toUpperCase()) {
         case "ME": simbolo = "ME"
             break;

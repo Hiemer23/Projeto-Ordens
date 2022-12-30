@@ -8,6 +8,7 @@ import Loading from './Loading';
 
 let dadosBackup = []
 let PMs = []
+let ATs = []
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           Concluido: false,
         }))
         PMs = dadosBackup.map(a => a.Nome_PM).filter((este, i) => dadosBackup.map(a => a.Nome_PM).indexOf(este) === i)
+        ATs = dadosBackup.map(a => a.Classificacao).filter((este, i) => dadosBackup.map(a => a.Classificacao).indexOf(este) === i)
         setDados(dadosBackup)
       }
       setLoading(false)
@@ -43,14 +45,6 @@ function App() {
 
     }, 150)
   }, [])
-
-
-  const changeVisible = (valor) => {
-    setLoading(true)
-    fetch(setDados(dados.filter(dado => dado.Ordem !== valor.Ord)))
-      .then(setLoading(false))
-      .catch(err => console.log(err))
-  }
 
   const changeDone = (ordem) => {
 
@@ -73,9 +67,17 @@ function App() {
     setDados((prevState) => dadosBackup.filter(t => t.Nome_PM === PM))
   }
 
+  const filtraAT = (AT) => {
+    if (AT === 'Vazio') {
+      setDados(dadosBackup)
+      return
+    }
+    setDados((prevState) => dadosBackup.filter(t => t.Classificacao === AT))
+  }
+
   return (
     <div className={styles.App}>
-      <Navbar dados={dados} filtraPM={filtraPM} PMs={PMs}></Navbar>
+      <Navbar dados={dados} filtraPM={filtraPM} filtraAT={filtraAT} PMs={PMs} ATs={ATs}></Navbar>
       {!loading ? ((dados.map((dado, index) => {
         return (
           <Ordem key={dado.id}
