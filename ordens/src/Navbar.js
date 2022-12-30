@@ -43,12 +43,12 @@ function Navbar(props) {
         <>
             <div className={styles.navbar}>
                 <div className={styles.text}>Dashboard de Ordens</div>
-                <div className={styles.select}>
+                <div className={styles.selectButton}>
                     <button className={styles.button} onClick={() => activeJanela("PM")}>
-                        <AiOutlineUserSwitch></AiOutlineUserSwitch>Alterar PM
+                        <AiOutlineUserSwitch></AiOutlineUserSwitch><label className={styles.textoButton}>Alterar PM</label>
                     </button>
                     <button className={styles.button} onClick={() => activeJanela("AT")}>
-                        <BsTools></BsTools>Tipo de Atividade
+                        <BsTools></BsTools><label className={styles.textoButton}>Tipo de Atividade</label>
                     </button>
                 </div>
 

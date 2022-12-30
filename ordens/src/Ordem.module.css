@@ -48,13 +48,16 @@
     padding-bottom: 10px;
     font-size: 15px;
 }
-.circulo{
+
+.circulo {
     position: relative;
     font-size: 44px;
     left: 120px;
     bottom: 100px;
-    color:#CBB635;
+    color: #CBB635;
+    transition: 0.8s;
 }
+
 
 /* Parte da Ordem */
 
@@ -142,11 +145,12 @@
     border-bottom: 2px solid #4472C4;
 }
 
-.texto_veja_mais{
+.texto_veja_mais {
     font-size: 14px;
     text-decoration: underline;
 }
-.texto_veja_mais:hover{
+
+.texto_veja_mais:hover {
     color: #1a2c4b;
     cursor: pointer;
 }
@@ -170,13 +174,17 @@
 .texto4 {
     text-align: center;
 }
-.concluido{
-    color:#2A7B17
+
+.concluido {
+    color: #2A7B17
+    
 }
-.concluido2{
+
+.concluido2 {
     position: relative;
     font-size: 44px;
     left: 120px;
     bottom: 100px;
-    color:#2A7B17
+    color: #2A7B17;
+    transition: 0.8s;
 }

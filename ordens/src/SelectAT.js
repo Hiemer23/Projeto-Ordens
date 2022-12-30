@@ -10,6 +10,24 @@ function SelectAT(props) {
         console.log(AT_selecionado)
     }
 
+    const nome_AT = (sigla) => {
+        switch (sigla) {
+            case "EL": return "Eletricista"
+                break;
+            case "CI": return "Manutentor Civil"
+                break;
+            case "OP": return "Operador de Refrigeração"
+                break;
+            case "TR": return "Técnico de Refrigeração"
+                break;
+            case "PL": return "Planejamento"
+                break;
+            case "TE": return "Técnico de Elétrica"
+                break;
+            case "ME": default: return 'Mecânico'
+        }
+    }
+
     return (
 
         <div className={styles.janela}>
@@ -18,7 +36,7 @@ function SelectAT(props) {
                 <select className={styles.select} onChange={select_AT}>
                     <option value="Vazio">Vazio</option>
                     {
-                        props.Nomes.map((op) => <option value={op}>{op}</option>)
+                        props.Nomes.map((op) => <option value={op}>{nome_AT(op)}</option>)
                     }
                 </select>
                 <button className={styles.buttonClose} onClick={props.close}><AiOutlineClose /></button>
