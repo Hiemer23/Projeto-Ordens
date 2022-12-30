@@ -10,11 +10,9 @@ function SelectPM(props) {
 
         <div className={styles.janela}>
             <div className={styles.interno}>
-                <div>{props.Nomes.length()}</div>
                 <select className={styles.select}>
                     {
-
-                        // props.Nomes.map(op => <option>{op}</option>)
+                        props.Nomes.map(op => <option>{op}</option>)
                     }
                 </select>
                 <button className={styles.buttonClose} onClick={props.close}>X</button>
