@@ -1,21 +1,28 @@
 import styles from './SelectPM.module.css'
+import { AiOutlineClose } from 'react-icons/ai'
+import { BsCheck2Circle } from 'react-icons/bs'
 
 function SelectPM(props) {
+    let PM_selecionado = 'Vazio'
 
-    function select_PM() {
-
+    const select_PM = (e) => {
+        PM_selecionado = e.target.value
+        // console.log(PM_selecionado)
     }
 
     return (
 
         <div className={styles.janela}>
             <div className={styles.interno}>
-                <select className={styles.select}>
+                <div className={styles.titulo}>Escolha o PM</div>
+                <select className={styles.select} onChange={select_PM}>
+                    <option value="Vazio">Vazio</option>
                     {
                         props.Nomes.map(op => <option>{op}</option>)
                     }
                 </select>
-                <button className={styles.buttonClose} onClick={props.close}>X</button>
+                <button className={styles.buttonClose} onClick={props.close}><AiOutlineClose /></button>
+                <button className={styles.buttonConfirm} onClick={() => props.confirm(PM_selecionado)}><BsCheck2Circle /></button>
             </div>
         </div >
     )

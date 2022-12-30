@@ -6,6 +6,8 @@ import Ordem from './Ordem';
 import Navbar from './Navbar';
 import Loading from './Loading';
 
+let dadosBackup = []
+let PMs = []
 
 function App() {
 
@@ -23,17 +25,18 @@ function App() {
   const userCollectionRef = collection(db, 'Ordens')
   const [dados, setDados] = useState([])
   const [loading, setLoading] = useState(true)
-  let PMs = []
 
   useEffect(() => {
     setTimeout(() => {
       const getData = async () => {
         const data = await getDocs(userCollectionRef)
-        setDados(data.docs.map((doc) => ({
+        dadosBackup = data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
           Concluido: false,
-        })))
+        }))
+        PMs = dadosBackup.map(a => a.Nome_PM).filter((este, i) => dadosBackup.map(a => a.Nome_PM).indexOf(este) === i)
+        setDados(dadosBackup)
       }
       setLoading(false)
       getData()
@@ -58,11 +61,21 @@ function App() {
     ordem.dado.Concluido = !ordem.dado.Concluido
     setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
     setLoading(false)
+    console.log(PMs)
+  }
+
+  const filtraPM = (PM) => {
+
+    if (PM === 'Vazio') {
+      setDados(dadosBackup)
+      return
+    }
+    setDados((prevState) => dadosBackup.filter(t => t.Nome_PM === PM))
   }
 
   return (
     <div className={styles.App}>
-      <Navbar dados={dados} ></Navbar>
+      <Navbar dados={dados} filtraPM={filtraPM} PMs={PMs}></Navbar>
       {!loading ? ((dados.map((dado, index) => {
         return (
           <Ordem key={dado.id}

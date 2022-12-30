@@ -1,10 +1,9 @@
 import styles from './Ordem.module.css'
 import { BsFillLightningChargeFill, BsSnow, BsClipboardCheck, BsCheck2Circle } from 'react-icons/bs'
 import { GiSpanner, GiWheelbarrow, GiPlainCircle } from 'react-icons/gi'
-import { useState } from 'react'
 
 
-function Ordem({ dado, changeDone, changeVisible }) {
+function Ordem({ dado, changeDone }) {
     let simbolo = ""
     let teste = dado.Ord
     switch (dado.Classificacao.toUpperCase()) {
