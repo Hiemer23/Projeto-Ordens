@@ -1,5 +1,5 @@
-.navbar{
-    width: 100%;
+.navbar {
+    width: 90%;
     height: 120px;
     color: #fff;
     background-color: #222A35;
@@ -9,3 +9,4 @@
     font-size: 80px;
     border-radius: 20px;
 }
+

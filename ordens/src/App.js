@@ -23,6 +23,7 @@ function App() {
   const userCollectionRef = collection(db, 'Ordens')
   const [dados, setDados] = useState([])
   const [loading, setLoading] = useState(true)
+  let PMs = []
 
   useEffect(() => {
     setTimeout(() => {
@@ -31,11 +32,12 @@ function App() {
         setDados(data.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
-          Concluido: false
+          Concluido: false,
         })))
       }
       setLoading(false)
       getData()
+
     }, 150)
   }, [])
 
@@ -48,17 +50,19 @@ function App() {
   }
 
   const changeDone = (ordem) => {
+
+    //let vet = dados.map(a=>a_Nome_PM)
+    //vet = dados.map(a=>a.Nome_PM).filter((este, i) => dados.map(a=>a.Nome_PM).indexOf(este) === i);
+
     setLoading(true)
-    console.log(ordem.dado.id)
     ordem.dado.Concluido = !ordem.dado.Concluido
-    console.log(ordem.dado.Concluido)
     setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
     setLoading(false)
   }
 
   return (
     <div className={styles.App}>
-      <Navbar></Navbar>
+      <Navbar dados={dados} ></Navbar>
       {!loading ? ((dados.map((dado, index) => {
         return (
           <Ordem key={dado.id}
