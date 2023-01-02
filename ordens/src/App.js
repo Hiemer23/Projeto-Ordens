@@ -1,10 +1,11 @@
 import styles from './App.module.css';
 import { initializeApp } from "firebase/app"
 import { useEffect, useState } from 'react';
-import { getFirestore, collection, getDocs, updateDoc ,doc} from "firebase/firestore";
+import { getFirestore, collection, getDocs, updateDoc, doc } from "firebase/firestore";
 import Ordem from './Ordem';
 import Navbar from './Navbar';
 import Loading from './Loading';
+import Mensagem from './Mensagem';
 
 let dadosBackup = []
 let PMs = []
@@ -26,6 +27,8 @@ function App() {
   const userCollectionRef = collection(db, 'Ordens')
   const [dados, setDados] = useState([])
   const [loading, setLoading] = useState(true)
+  const [msg, setMsg] = useState(false)
+  const [msgStatus, setMsgStatus] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,23 +48,24 @@ function App() {
     }, 150)
   }, [])
 
-  const update_banco = async(id,done) => {
-    const DocAtualizado = doc(db, 'Ordens',id)
-    const atualizacao = {Concluido: done}
-    console.log(id, done)
-    await updateDoc(DocAtualizado,atualizacao)
+  const update_banco = async (id, done) => {
+    const DocAtualizado = doc(db, 'Ordens', id)
+    const atualizacao = { Concluido: done }
+    //console.log(id, done)
+    await updateDoc(DocAtualizado, atualizacao)
   }
 
   const changeDone = (ordem) => {
-
+    setMsg(!msg)
     //let vet = dados.map(a=>a_Nome_PM)
     //vet = dados.map(a=>a.Nome_PM).filter((este, i) => dados.map(a=>a.Nome_PM).indexOf(este) === i);
 
     setLoading(true)
     ordem.dado.Concluido = !ordem.dado.Concluido
+    setMsgStatus(ordem.dado.Concluido)
     setDados((prevState) => prevState.map((t) => t.id === ordem.dado.id ? t = ordem.dado : t))
 
-    update_banco(ordem.dado.id,ordem.dado.Concluido)
+    update_banco(ordem.dado.id, ordem.dado.Concluido)
     setLoading(false)
     //console.log(PMs)
   }
@@ -97,6 +101,7 @@ function App() {
         )
       })))
         : <Loading />}
+      <Mensagem Concluido={msgStatus} ativar={msg} />
     </div >
   );
 }

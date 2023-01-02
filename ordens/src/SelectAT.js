@@ -7,7 +7,15 @@ function SelectAT(props) {
 
     const select_AT = (e) => {
         AT_selecionado = e.target.value
-        console.log(AT_selecionado)
+        //console.log(AT_selecionado)
+    }
+
+    const tratarClick = (e) => {
+        e.preventDefault()
+        //console.log(e.target.classList[0])
+        if (e.target.classList[0] === (styles.janela)) {
+            props.close()
+        }
     }
 
     const nome_AT = (sigla) => {
@@ -30,7 +38,7 @@ function SelectAT(props) {
 
     return (
 
-        <div className={styles.janela}>
+        <div onClick={(event) => tratarClick(event)} className={styles.janela}>
             <div className={styles.interno}>
                 <div className={styles.titulo}>Escolha o tipo de atividade</div>
                 <select className={styles.select} onChange={select_AT}>

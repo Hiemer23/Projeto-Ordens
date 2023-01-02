@@ -10,9 +10,17 @@ function SelectPM(props) {
         // console.log(PM_selecionado)
     }
 
+    const tratarClick = (e) => {
+        e.preventDefault()
+        //console.log(e.target.classList[0])
+        if (e.target.classList[0] === (styles.janela)) {
+            props.close()
+        }
+    }
+
     return (
 
-        <div className={styles.janela}>
+        <div onClick={(event) => tratarClick(event)} className={styles.janela}>
             <div className={styles.interno}>
                 <div className={styles.titulo}>Escolha o PM</div>
                 <select className={styles.select} onChange={select_PM}>
