@@ -118,3 +118,13 @@ Dentro do card da ordem existe um botão de concluir a ordem, ao concluir, a bol
 |![Card da Ordem](screenshot/card_ordem.png)|![Conclusão Ordem](screenshot/done.png)|
 
 Também ao concluir. É feito um edit no banco de dados através do ID dessa ordem.
+
+Em cada card há uma imagem a cima do nome para identificar a classificação da atividade, conforme o exemplo abaixo 
+
+| Classificação | Imagem  |
+| --- | --- |
+| Eletricista, Técnico em Elétrica |![Símbolo Elétrica](screenshot/Elétrica.png)|
+| Mecânico | ![Símbolo Elétrica](screenshot/Mecânica.png)|
+| Manutentor cívil |![Símbolo Elétrica](screenshot/Civil.png)|
+| Planejador |![Símbolo Elétrica](screenshot/Planejamento.png)|
+| Técnico em Refrigeração,Operador de refrigeração | ![Símbolo Elétrica](screenshot/Refrigeração.png)|
