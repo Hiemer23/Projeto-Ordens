@@ -11,7 +11,7 @@
     border-radius: 20px;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.6);
     background-color: #F2F2F2;
-    margin: 5px
+    margin: 5px;
 }
 
 /* Parte de cima */
@@ -56,6 +56,7 @@
     bottom: 100px;
     color: #edd63d;
     transition: 0.8s;
+    z-index: 0;
 }
 
 
@@ -155,6 +156,20 @@
     cursor: pointer;
 }
 
+.button_vejaMais {
+    transition: .5s;
+    border: 1px solid;
+    border-radius: 20px;
+    color: #1a2c4b;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.button_vejaMais:hover {
+    color: #fff;
+    background-color: #222A35;
+}
+
 /* Parte da data */
 .data_base {
     display: flex;
@@ -177,7 +192,6 @@
 
 .concluido {
     color: #2A7B17
-    
 }
 
 .concluido2 {

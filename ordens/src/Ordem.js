@@ -1,10 +1,17 @@
 import styles from './Ordem.module.css'
 import { BsFillLightningChargeFill, BsSnow, BsClipboardCheck, BsCheck2Circle } from 'react-icons/bs'
 import { GiSpanner, GiWheelbarrow, GiPlainCircle } from 'react-icons/gi'
+import VejaMais from './VejaMais'
+import { useState } from 'react'
 
 
 function Ordem({ dado, changeDone }) {
     let simbolo = ""
+    const [ativo, setAtivo] = useState(false)
+    const [ops, setOps] = useState([])
+    const [desc, setDesc] = useState([])
+    const [time, setTime] = useState([])
+
     switch (dado.Classificacao.toUpperCase()) {
         case "ME": simbolo = "ME"
             break;
@@ -18,8 +25,22 @@ function Ordem({ dado, changeDone }) {
             break;
         default: simbolo = 'ME'
     }
+
+    const callVejaMais = (props) => {
+        console.log(props)
+        setOps(props.Operacao)
+        setDesc(props.Descricao)
+        setTime(props.Horas_Previstas)
+        setAtivo(true)
+    }
+
+    const closeVejaMais = () => {
+        setAtivo(false)
+    }
+
     return (
         <>
+            {ativo && <VejaMais ops={ops} desc={desc} time={time} closeVejaMais={closeVejaMais}></VejaMais>}
             <div className={styles.container} >
                 <div className={styles.cabecalho}>
                     <div className={styles.imagem}>
@@ -68,7 +89,7 @@ function Ordem({ dado, changeDone }) {
                 </div>
                 <div className={styles.veja_mais}>
                     <div className={styles.texto_veja_mais}>
-                        {(dado.Operacao.length) > 3 ? "Veja Mais" : false}
+                        {(dado.Operacao.length) > 3 ? <button onClick={() => callVejaMais(dado)} className={styles.button_vejaMais}>Veja Mais</button> : false}
                     </div>
                 </div>
 
